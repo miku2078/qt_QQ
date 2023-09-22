@@ -1,0 +1,14 @@
+#main_wid {
+  background-color: #F2F2F2;
+}
+
+QSplitter::handle::section {
+  background-color: #E8E8E8;
+  /* 设置分割条的子控件背景为红色 */
+  width: 2px;
+  border: none;
+}
+
+ToolButton {
+  border: none;
+}
