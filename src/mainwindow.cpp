@@ -28,37 +28,25 @@ MainWindow::MainWindow(QMainWindow *parent) :
   send_ui(new Ui::Send),
   window(new QWidget(this)) {
   ui->setupUi(this);
-  show();
   yuri::Tools::init();
   yuri::Tools::loadQss(":qss/left_wid.qss", ui->left_wid);
   yuri::Tools::loadQss(":qss/main_wid.qss", ui->main_wid);
   QHBoxLayout *layout = new QHBoxLayout(ui->main_wid);
   QSplitter *splitter = new QSplitter(Qt::Horizontal, ui->main_wid);
-
   QWidget *leftLabel = new QWidget(splitter);
   leftLabel->setMinimumWidth(450);
   QSplitter *r_splitter = new QSplitter(Qt::Vertical, splitter);
-
-  
-
-  splitter->setStretchFactor(1, 1);
   QWidget *r_top = new QWidget(r_splitter);
   QWidget *r_but = new QWidget(r_splitter);
   send_ui->setupUi(r_but);
-  connect(send_ui->pushButton, &QPushButton::clicked, [this](bool click) {
-    qinfo << click;
-  });
-
-  r_but->setMinimumWidth(300);
-
+  r_but->setMinimumHeight(300);
+  r_but->setMaximumHeight(500);
   layout->addWidget(splitter);
   layout->setContentsMargins(0, 0, 0, 0);
-  // r_splitter->setStretchFactor(0, 30);
-  // r_splitter->setStretchFactor(1, 3);
-  r_splitter->setSizes({400, 200});
-
-  // splitter->show();
+  splitter->setSizes({400, 1000});
+  r_splitter->setSizes({600, 300});
   ui->main_wid->setLayout(layout);
+  show();
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
