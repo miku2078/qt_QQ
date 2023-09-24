@@ -28,7 +28,8 @@ public:
     timer->setInterval(max_radius / 28);
 }
 
-~PushButton() {
+virtual ~PushButton() {
+    
 }
 
 private:

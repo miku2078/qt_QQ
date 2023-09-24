@@ -19,23 +19,21 @@
 
 class ToolButton : public QToolButton {
   Q_OBJECT
+private:
+  
 public:
   ToolButton(QWidget *parent = nullptr) :
     QToolButton(parent) {
     setEnabled(false);
-    
   }
 
-  ~ToolButton() {
+  virtual ~ToolButton() {
   }
 
 protected:
   virtual void enterEvent(QEnterEvent *event) override {
     QToolButton::enterEvent(event);
     setEnabled(true);
-    QLabel *label = new QLabel("yuri is yes", this);
-    label->show();
-    label->move(this->x(), this->y() - 20);
   }
 
   virtual void leaveEvent(QEvent *event) override {

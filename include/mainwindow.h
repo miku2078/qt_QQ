@@ -26,6 +26,8 @@ private:
   Ui::MainWindow *ui;
   Ui::Send *send_ui;
   QWidget *window;
+
+  void addScrollArea(QWidget *parent);
 };
 
 

@@ -3,6 +3,7 @@
         <file>qss/mainwindow.qss</file>
         <file>qss/left_wid.qss</file>
         <file>qss/main_wid.qss</file>
+
         <file>icons/促销.png</file>
         <file>icons/冠军.png</file>
         <file>icons/打卡.png</file>
@@ -28,5 +29,7 @@
         <file>icons/红包.png</file>
         <file>icons/time (1).png</file>
         <file>icons/time.png</file>
+
+        <file>picture/avatar.jpg</file>
     </qresource>
 </RCC>

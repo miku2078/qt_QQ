@@ -11,3 +11,33 @@ QSplitter::handle::section {
 ToolButton {
   border: none;
 }
+
+QTextEdit {
+  background-color: #F2F2F2;
+  font-size: 24px;
+  font-family: 'Microsoft Yahei';
+  border: none;
+}
+
+QScrollArea {
+  border: none;
+}
+
+QLabel {
+  font-size: 24px;
+  text-align: center;
+  border: none;
+}
+
+Chat QLabel {
+  border-radius: 30px;
+  border: none;
+  background-color: rgb(13, 153, 137);
+  padding: 8px;
+}
+
+
+
+Chat {
+  background-color: blueviolet;
+}
