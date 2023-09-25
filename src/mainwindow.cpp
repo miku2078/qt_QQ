@@ -36,7 +36,7 @@ MainWindow::MainWindow(QMainWindow *parent) :
   send_ui(new Ui::Send),
   window(new QWidget(this)) {
   ui->setupUi(this);
-  // yuri::Tools::init();
+  yuri::Tools::init();
   yuri::Tools::loadQss(":qss/left_wid.qss", ui->left_wid);
   yuri::Tools::loadQss(":qss/main_wid.qss", ui->main_wid);
 
@@ -86,16 +86,13 @@ void MainWindow::addScrollArea(QWidget *parent) {
   area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
   connect(send_ui->pushButton, &QPushButton::clicked, [area, this, parent, pLayout]() {
-    int c = 0;
-    QTextBlock block = send_ui->textEdit->document()->begin();
-    while (block.isValid() && block.layout()) {
-      c += block.layout()->lineCount();
-      block = block.next();
-    }
-    int h = QFontMetrics(send_ui->textEdit->currentFont()).height();
-    pLayout->addWidget(new Chat(send_ui->textEdit->toPlainText(), c * (h + 3) + 16));
+    static bool is_me = false;
+    auto chat = new Chat(send_ui->textEdit->document(), is_me);
+    chat->setAvatar(":/picture/avatar.jpg");
+    pLayout->addWidget(chat);
     QScrollBar *bar = area->verticalScrollBar();
-    bar->setValue(bar->maximum() + c * h + 16);
+    bar->setValue(bar->maximum());
+    is_me = !is_me;
   });
 
   area->widget()->setLayout(pLayout); // 把布局放置到QScrollArea的内部QWidget中

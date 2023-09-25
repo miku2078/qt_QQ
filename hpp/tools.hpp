@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QFile>
 #include <qmutex.h>
+#include <qtextobject.h>
 
 namespace yuri {
 
@@ -29,6 +30,15 @@ public:
     } else {
       qInstallMessageHandler(log);
     }
+  }
+
+  static int getRowCount(QTextBlock block) {
+    int c = 0;
+    while (block.isValid() && block.layout()) {
+      c += block.layout()->lineCount();
+      block = block.next();
+    }
+    return c;
   }
 
 private:
