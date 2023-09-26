@@ -23,11 +23,7 @@ QScrollArea {
   border: none;
 }
 
-QLabel {
-  font-size: 24px;
-  text-align: center;
-  border: none;
-}
+
 
 Chat QLabel {
   border-radius: 5px;

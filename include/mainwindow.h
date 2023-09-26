@@ -9,6 +9,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 class Send;
+class MsgList;
 }
 QT_END_NAMESPACE
 
@@ -25,6 +26,7 @@ public:
 private:
   Ui::MainWindow *ui;
   Ui::Send *send_ui;
+  Ui::MsgList *msg_list_ui;
   QWidget *window;
 
   void addScrollArea(QWidget *parent);

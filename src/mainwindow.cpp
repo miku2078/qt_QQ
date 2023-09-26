@@ -29,11 +29,14 @@
 #include <QTextBlock>
 #include <QMessageLogger>
 #include <QScrollBar>
+#include "../ui/ui_msg_list.h"
+#include "hpp/msg_info.hpp"
 
 MainWindow::MainWindow(QMainWindow *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow),
   send_ui(new Ui::Send),
+  msg_list_ui(new Ui::MsgList),
   window(new QWidget(this)) {
   ui->setupUi(this);
   yuri::Tools::init();
@@ -44,6 +47,15 @@ MainWindow::MainWindow(QMainWindow *parent) :
   QSplitter *splitter = new QSplitter(Qt::Horizontal, ui->main_wid);
   QWidget *leftLabel = new QWidget(splitter); // 左边消息列表
   leftLabel->setMinimumWidth(450);
+  msg_list_ui->setupUi(leftLabel);
+  QVBoxLayout *pLayout = new QVBoxLayout();
+  pLayout->setAlignment(Qt::AlignTop);
+  msg_list_ui->scrollAreaWidgetContents->setLayout(pLayout);
+  connect(msg_list_ui->pushButton, &QPushButton::clicked, [this, pLayout]() {
+    MsgInfo *info = new MsgInfo;
+    pLayout->addWidget(info);
+  });
+
   QSplitter *r_splitter = new QSplitter(Qt::Vertical, splitter);
   QWidget *r_top = new QWidget(r_splitter); // 右上对话列表
   QWidget *r_but = new QWidget(r_splitter); // 右下聊天输入框
@@ -81,7 +93,7 @@ void MainWindow::addScrollArea(QWidget *parent) {
   QScrollArea *area = new QScrollArea();
   area->setWidgetResizable(true);
   area->setWidget(new QWidget(area));
-  QVBoxLayout *pLayout = new QVBoxLayout(); // 网格布局
+  QVBoxLayout *pLayout = new QVBoxLayout(); 
   pLayout->setAlignment(Qt::AlignTop);
   area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
